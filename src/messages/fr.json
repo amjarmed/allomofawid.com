@@ -1,0 +1,104 @@
+{
+  "common": {
+    "appName": "Allo Mofawid",
+    "slogan": "Plateforme de recherche d'huissiers de justice au Maroc"
+  },
+  "emergency": {
+    "needHelpNow": "Besoin d'un huissier maintenant ?",
+    "findNearestHuissier": "Trouver l'huissier le plus proche",
+    "locating": "Localisation en cours...",
+    "locationPermissionNote": "Nous utiliserons votre position pour trouver les huissiers les plus proches",
+    "locationNotSupported": "Désolé, votre appareil ne prend pas en charge la localisation"
+  },
+  "search": {
+    "citySearch": "Ou rechercher par ville",
+    "selectCity": "Sélectionner une ville",
+    "searchPlaceholder": "Rechercher un huissier..."
+  },
+  "pagination": {
+    "itemsPerPage": "Afficher :",
+    "totalItems": "{count} éléments"
+  },
+  "admin": {
+    "users": {
+      "title": "Gestion des utilisateurs",
+      "loading": {
+        "filters": "Chargement des filtres...",
+        "table": "Chargement des utilisateurs..."
+      },
+      "filters": {
+        "search": "Rechercher des utilisateurs...",
+        "role": "Filtrer par rôle",
+        "status": "Filtrer par statut",
+        "allRoles": "Tous les rôles",
+        "roleUser": "Utilisateur",
+        "roleHuissier": "Huissier de justice",
+        "roleAdmin": "Administrateur",
+        "allStatuses": "Tous les statuts",
+        "statusActive": "Actif",
+        "statusInactive": "Inactif",
+        "statusPending": "En attente",
+        "statusSuspended": "Suspendu",
+        "clear": "Effacer les filtres"
+      },
+      "table": {
+        "name": "Nom",
+        "email": "E-mail",
+        "role": "Rôle",
+        "status": "Statut",
+        "created": "Créé le",
+        "actions": "Actions"
+      },
+      "roles": {
+        "user": "Utilisateur",
+        "huissier": "Huissier de justice",
+        "admin": "Administrateur"
+      },
+      "statuses": {
+        "active": "Actif",
+        "inactive": "Inactif",
+        "pending": "En attente",
+        "suspended": "Suspendu"
+      },
+      "actions": {
+        "activate": "Activer",
+        "deactivate": "Désactiver",
+        "delete": "Supprimer",
+        "makeAdmin": "Définir comme administrateur",
+        "makeHuissier": "Définir comme huissier",
+        "makeUser": "Définir comme utilisateur",
+        "success": "Action effectuée avec succès",
+        "error": "Échec de l'action",
+        "roleUpdateSuccess": "Rôle mis à jour avec succès",
+        "roleUpdateError": "Échec de la mise à jour du rôle"
+      }
+    }
+  }
+}
+  },
+  "errors": {
+    "title": "Une erreur est survenue",
+    "description": "Désolé, une erreur inattendue s'est produite. Veuillez réessayer.",
+    "retry": "Réessayer",
+    "filter": {
+      "invalid": "Options de filtrage invalides",
+      "noResults": "Aucun résultat trouvé",
+      "tooManyFilters": "Veuillez réduire le nombre de critères utilisés"
+    },
+    "network": {
+      "offline": "Pas de connexion Internet",
+      "timeout": "Délai de connexion dépassé",
+      "serverError": "Erreur serveur"
+    },
+    "validation": {
+      "required": "Ce champ est requis",
+      "invalid": "La valeur saisie est invalide"
+    }
+  },
+    "firstPage": "Première page",
+    "previousPage": "Page précédente",
+    "nextPage": "Page suivante",
+    "lastPage": "Dernière page",
+    "loading": "Chargement..."
+  }
+}

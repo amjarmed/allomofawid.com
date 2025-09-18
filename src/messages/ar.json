@@ -1,0 +1,147 @@
+{
+  "common": {
+    "appName": "ألو مفوض",
+    "slogan": "منصة للبحث عن المفوضين القضائيين في المغرب"
+  },
+  "emergency": {
+    "needHelpNow": "تحتاج مفوض قضائي الآن؟",
+    "findNearestHuissier": "ابحث عن أقرب مفوض قضائي",
+    "locating": "جاري تحديد موقعك...",
+    "locationPermissionNote": "سنستخدم موقعك لإيجاد أقرب المفوضين القضائيين إليك",
+    "locationNotSupported": "عذراً، جهازك لا يدعم تحديد الموقع"
+  },
+  "search": {
+    "citySearch": "أو ابحث حسب المدينة",
+    "selectCity": "اختر المدينة",
+    "searchPlaceholder": "ابحث عن مفوض قضائي..."
+  },
+  "pagination": {
+    "itemsPerPage": "المعروض:",
+    "totalItems": "{count} عناصر"
+  },
+  "admin": {
+    "users": {
+      "title": "إدارة المستخدمين",
+      "loading": {
+        "filters": "جاري تحميل الفلاتر...",
+        "table": "جاري تحميل المستخدمين..."
+      },
+      "filters": {
+        "search": "البحث عن مستخدمين...",
+        "role": "تصفية حسب الدور",
+        "status": "تصفية حسب الحالة",
+        "allRoles": "جميع الأدوار",
+        "roleUser": "مستخدم",
+        "roleHuissier": "مفوض قضائي",
+        "roleAdmin": "مدير",
+        "allStatuses": "جميع الحالات",
+        "statusActive": "نشط",
+        "statusInactive": "غير نشط",
+        "statusPending": "قيد الانتظار",
+        "statusSuspended": "موقوف",
+        "clear": "مسح الفلاتر"
+      },
+      "table": {
+        "name": "الاسم",
+        "email": "البريد الإلكتروني",
+        "role": "الدور",
+        "status": "الحالة",
+        "created": "تاريخ الإنشاء",
+        "actions": "الإجراءات"
+      },
+      "roles": {
+        "user": "مستخدم",
+        "huissier": "مفوض قضائي",
+        "admin": "مدير"
+      },
+      "statuses": {
+        "active": "نشط",
+        "inactive": "غير نشط",
+        "pending": "قيد الانتظار",
+        "suspended": "موقوف"
+      },
+      "actions": {
+        "activate": "تفعيل",
+        "deactivate": "تعطيل",
+        "delete": "حذف",
+        "makeAdmin": "تعيين كمدير",
+        "makeHuissier": "تعيين كمفوض قضائي",
+        "makeUser": "تعيين كمستخدم",
+        "success": "تم تنفيذ الإجراء بنجاح",
+        "error": "فشل تنفيذ الإجراء",
+        "roleUpdateSuccess": "تم تحديث الدور بنجاح",
+        "roleUpdateError": "فشل تحديث الدور"
+      }
+    }
+  }
+},
+    "next": "التالي",
+    "previous": "السابق",
+    "firstPage": "الصفحة الأولى",
+    "lastPage": "الصفحة الأخيرة",
+    "loading": "جاري التحميل..."
+  },
+  "errors": {
+    "title": "حدث خطأ",
+    "description": "حدث خطأ أثناء معالجة طلبك.",
+    "retry": "حاول مرة أخرى",
+    "filters": {
+      "INVALID_FILTER": "قيمة التصفية غير صالحة",
+      "NETWORK_ERROR": "خطأ في الاتصال بالشبكة",
+      "INVALID_RESPONSE": "استجابة غير صالحة من الخادم",
+      "INVALID_CURSOR": "مؤشر التصفح غير صالح"
+    }
+  },
+  "requests": {
+    "newRequest": "تقديم طلب جديد",
+    "newRequestDesc": "املأ التفاصيل أدناه لتقديم طلبك",
+    "type": "نوع الطلب",
+    "selectType": "اختر نوع الطلب",
+    "types": {
+      "notification": "تبليغ قانوني",
+      "enforcement": "تنفيذ حكم قضائي",
+      "inspection": "معاينة موقع",
+      "consultation": "استشارة قانونية",
+      "documentService": "خدمة المستندات",
+      "other": "خدمات أخرى"
+    },
+    "priority": "مستوى الأولوية",
+    "selectPriority": "اختر مستوى الأولوية",
+    "priorities": {
+      "urgent": "عاجل - خلال 24 ساعة",
+      "high": "مرتفع - خلال 3 أيام",
+      "normal": "عادي - خلال أسبوع",
+      "low": "منخفض - خلال أسبوعين"
+    },
+    "title": "العنوان",
+    "titlePlaceholder": "عنوان مختصر لطلبك",
+    "description": "الوصف",
+    "descriptionPlaceholder": "قدم معلومات مفصلة عن طلبك",
+    "city": "المدينة",
+    "selectCity": "اختر المدينة",
+    "address": "العنوان",
+    "addressPlaceholder": "العنوان التفصيلي",
+    "preferredDate": "التاريخ المفضل (اختياري)",
+    "pickADate": "اختر تاريخاً",
+    "creating": "جاري إنشاء الطلب...",
+    "create": "تقديم الطلب",
+    "requestCreated": "تم إنشاء الطلب بنجاح",
+    "requestCreatedDesc": "تم تقديم طلبك بنجاح. سيتم إخطارك عندما يقبل المفوض القضائي الطلب.",
+    "error": "خطأ",
+    "errorCreatingRequest": "حدث خطأ أثناء إنشاء طلبك. يرجى المحاولة مرة أخرى.",
+    "status": {
+      "PENDING": "قيد الانتظار",
+      "ACCEPTED": "مقبول",
+      "REJECTED": "مرفوض",
+      "IN_PROGRESS": "قيد التنفيذ",
+      "COMPLETED": "مكتمل",
+      "CANCELLED": "ملغى"
+    },
+    "timeline": {
+      "by": "بواسطة",
+      "timeAgo": "منذ {0}",
+      "noHistory": "لا يوجد سجل للحالة",
+      "attachments": "المرفقات"
+    }
+  }
+}

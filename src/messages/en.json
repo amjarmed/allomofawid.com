@@ -1,0 +1,189 @@
+{
+  "common": {
+    "appName": "Allo Mofawid",
+    "slogan": "Platform for finding judicial officers in Morocco"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "noNotifications": "No notifications",
+    "markAsRead": "Mark as read",
+    "markAllAsRead": "Mark all as read",
+    "clearAll": "Clear all",
+    "delete": "Delete",
+    "clearConfirm": "Are you sure you want to clear this notification?",
+    "clearAllConfirm": "Are you sure you want to clear all notifications?",
+    "confirm": "Confirm",
+    "cancel": "Cancel"
+  },
+  "emergency": {
+    "needHelpNow": "Need a judicial officer now?",
+    "findNearestHuissier": "Find nearest judicial officer"
+  },
+  "admin": {
+    "users": {
+      "title": "User Management",
+      "loading": {
+        "filters": "Loading filters...",
+        "table": "Loading users..."
+      },
+      "filters": {
+        "search": "Search users...",
+        "role": "Filter by role",
+        "status": "Filter by status",
+        "allRoles": "All roles",
+        "roleUser": "User",
+        "roleHuissier": "Judicial Officer",
+        "roleAdmin": "Admin",
+        "allStatuses": "All statuses",
+        "statusActive": "Active",
+        "statusInactive": "Inactive",
+        "statusPending": "Pending",
+        "statusSuspended": "Suspended",
+        "clear": "Clear filters"
+      },
+      "table": {
+        "name": "Name",
+        "email": "Email",
+        "role": "Role",
+        "status": "Status",
+        "created": "Created",
+        "actions": "Actions"
+      },
+      "roles": {
+        "user": "User",
+        "huissier": "Judicial Officer",
+        "admin": "Admin"
+      },
+      "statuses": {
+        "active": "Active",
+        "inactive": "Inactive",
+        "pending": "Pending",
+        "suspended": "Suspended"
+      },
+      "actions": {
+        "activate": "Activate",
+        "deactivate": "Deactivate",
+        "delete": "Delete",
+        "makeAdmin": "Make Admin",
+        "makeHuissier": "Make Judicial Officer",
+        "makeUser": "Make User",
+        "success": "Action performed successfully",
+        "error": "Failed to perform action",
+        "roleUpdateSuccess": "Role updated successfully",
+        "roleUpdateError": "Failed to update role"
+      },
+      "roleDialog": {
+        "title": "Change User Role",
+        "description": "Change the role for {name}",
+        "selectRole": "Select new role",
+        "cancel": "Cancel",
+        "confirm": "Update Role",
+        "updating": "Updating..."
+      },
+      "activity": {
+        "title": "Activity History",
+        "noActivity": "No activity recorded",
+        "actions": {
+          "create": "User created",
+          "delete": "User deleted",
+          "update": "Updated {entity}",
+          "activate": "User activated",
+          "deactivate": "User deactivated"
+        },
+        "entities": {
+          "user": "user",
+          "user_role": "user role"
+        }
+      }
+    }
+  }
+},
+    "locating": "Getting your location...",
+    "locationPermissionNote": "We will use your location to find the nearest judicial officers",
+    "locationNotSupported": "Sorry, your device does not support location services"
+  },
+  "search": {
+    "citySearch": "Or search by city",
+    "selectCity": "Select city",
+    "searchPlaceholder": "Search for a judicial officer..."
+  },
+  "pagination": {
+    "itemsPerPage": "Show:",
+    "totalItems": "{count} items",
+    "next": "Next",
+    "previous": "Previous",
+    "firstPage": "First page",
+    "lastPage": "Last page",
+    "loading": "Loading..."
+  },
+  "errors": {
+    "title": "An error occurred",
+    "description": "Something went wrong while processing your request.",
+    "retry": "Try again",
+    "filters": {
+      "INVALID_FILTER": "Invalid filter value",
+      "NETWORK_ERROR": "Network connection error",
+      "INVALID_RESPONSE": "Invalid response from server",
+      "INVALID_CURSOR": "Invalid pagination cursor"
+    }
+  },
+  "requests": {
+    "newRequest": "Submit New Request",
+    "newRequestDesc": "Fill in the details below to submit your request",
+    "type": "Request Type",
+    "selectType": "Select request type",
+    "types": {
+      "notification": "Legal Notification",
+      "enforcement": "Court Decision Enforcement",
+      "inspection": "Site Inspection",
+      "consultation": "Legal Consultation",
+      "document_service": "Document Service",
+      "other": "Other Services"
+    },
+    "priority": "Priority Level",
+    "selectPriority": "Select priority level",
+    "priorities": {
+      "urgent": "Urgent - Within 24 hours",
+      "high": "High - Within 3 days",
+      "normal": "Normal - Within 1 week",
+      "low": "Low - Within 2 weeks"
+    },
+    "title": "Title",
+    "titlePlaceholder": "Brief title for your request",
+    "description": "Description",
+    "descriptionPlaceholder": "Provide detailed information about your request",
+    "city": "City",
+    "selectCity": "Select city",
+    "address": "Address",
+    "addressPlaceholder": "Detailed address",
+    "preferredDate": "Preferred Date (Optional)",
+    "pickADate": "Pick a date",
+    "creating": "Creating request...",
+    "create": "Submit Request",
+    "requestCreated": "Request Created Successfully",
+    "requestCreatedDesc": "Your request has been submitted successfully. You will be notified when a huissier accepts it.",
+    "error": "Error",
+    "errorCreatingRequest": "There was an error creating your request. Please try again.",
+    "backToRequests": "Back to Requests",
+    "requestNotFound": "Request not found",
+    "retry": "Try again",
+    "assignedHuissier": "Assigned Huissier",
+    "call": "Call",
+    "messages": "Messages",
+    "attachments": "Attachments",
+    "status": {
+      "PENDING": "Pending",
+      "ACCEPTED": "Accepted",
+      "REJECTED": "Rejected",
+      "IN_PROGRESS": "In Progress",
+      "COMPLETED": "Completed",
+      "CANCELLED": "Cancelled"
+    },
+    "timeline": {
+      "by": "by",
+      "timeAgo": "{0} ago",
+      "noHistory": "No status history available",
+      "attachments": "Attachments"
+    }
+  }
+}
