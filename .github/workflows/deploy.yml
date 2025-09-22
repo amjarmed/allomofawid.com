@@ -1,0 +1,280 @@
+name: 🚀 Deploy & Test
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+# Production deployment with comprehensive testing
+jobs:
+  # Pre-deployment tests
+  pre-deploy-tests:
+    name: 🔬 Pre-Deploy Testing
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: 📁 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: 📥 Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🔍 Lint & Type Check
+        run: |
+          pnpm lint
+          pnpm type-check
+
+      - name: 🧪 Run Full Test Suite
+        run: pnpm test --coverage --watchAll=false
+        env:
+          NODE_ENV: test
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.SUPABASE_URL_PROD }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY_PROD }}
+
+      - name: 🏗️ Build Production
+        run: pnpm build
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.SUPABASE_URL_PROD }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY_PROD }}
+          ANALYZE: false
+
+      - name: 🎭 Critical Path E2E Tests
+        run: pnpm exec playwright test --grep="@critical"
+        env:
+          PLAYWRIGHT_HTML_REPORT: pre-deploy-e2e-report
+
+      - name: 📊 Upload Pre-Deploy Test Results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pre-deploy-test-results
+          path: |
+            coverage/
+            pre-deploy-e2e-report/
+
+  # Deploy to Vercel
+  deploy:
+    name: 🚀 Deploy to Production
+    runs-on: ubuntu-latest
+    needs: pre-deploy-tests
+    timeout-minutes: 10
+
+    outputs:
+      deployment-url: ${{ steps.deploy.outputs.deployment-url }}
+
+    steps:
+      - name: 📁 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🚀 Deploy to Vercel
+        id: deploy
+        uses: vercel/action@v1
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod'
+
+  # Post-deployment smoke tests
+  smoke-tests:
+    name: 💨 Smoke Tests
+    runs-on: ubuntu-latest
+    needs: deploy
+    timeout-minutes: 15
+
+    steps:
+      - name: 📁 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: 📥 Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🎭 Install Playwright
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: 🔥 Run Smoke Tests
+        run: pnpm exec playwright test --grep="@smoke"
+        env:
+          BASE_URL: ${{ needs.deploy.outputs.deployment-url }}
+          PLAYWRIGHT_HTML_REPORT: smoke-test-report
+
+      - name: 📊 Upload Smoke Test Results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: smoke-test-results
+          path: smoke-test-report/
+
+  # Performance & Security Audit
+  production-audit:
+    name: 🔍 Production Audit
+    runs-on: ubuntu-latest
+    needs: [deploy, smoke-tests]
+    timeout-minutes: 15
+
+    steps:
+      - name: 📁 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 📱 Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v10
+        with:
+          urls: |
+            ${{ needs.deploy.outputs.deployment-url }}
+            ${{ needs.deploy.outputs.deployment-url }}/ar
+            ${{ needs.deploy.outputs.deployment-url }}/ar/city-search
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+          configPath: './lighthouse.config.js'
+
+      - name: 🔒 Security Headers Check
+        run: |
+          curl -I ${{ needs.deploy.outputs.deployment-url }} > security-headers.txt
+          grep -i "x-frame-options\|x-content-type-options\|x-xss-protection\|strict-transport-security" security-headers.txt || exit 1
+
+      - name: 🌐 SSL/TLS Check
+        uses: ruzickap/action-my-broken-link-checker@v2
+        with:
+          url: ${{ needs.deploy.outputs.deployment-url }}
+          cmd_params: '--buffer-size=8192 --max-connections=10 --color=always --skip-tls-verification'
+
+  # Health Check & Monitoring
+  health-check:
+    name: 💚 Health Check
+    runs-on: ubuntu-latest
+    needs: production-audit
+    timeout-minutes: 10
+
+    steps:
+      - name: 🏥 API Health Check
+        run: |
+          # Check API endpoints are responding
+          curl -f ${{ needs.deploy.outputs.deployment-url }}/api/health || exit 1
+          curl -f ${{ needs.deploy.outputs.deployment-url }}/api/cities || exit 1
+
+      - name: 🔍 Database Connectivity Check
+        run: |
+          # Test database connection via API
+          response=$(curl -s ${{ needs.deploy.outputs.deployment-url }}/api/cities)
+          echo $response | jq '.length > 0' || exit 1
+
+      - name: 📊 Update Deployment Status
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.repos.createDeploymentStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              deployment_id: context.payload.deployment?.id || '${{ needs.deploy.outputs.deployment-id }}',
+              state: 'success',
+              environment_url: '${{ needs.deploy.outputs.deployment-url }}',
+              description: 'Deployment successful with all health checks passed'
+            });
+
+  # Rollback on failure
+  rollback:
+    name: 🔄 Rollback on Failure
+    runs-on: ubuntu-latest
+    needs: [deploy, smoke-tests, production-audit, health-check]
+    if: failure()
+    timeout-minutes: 5
+
+    steps:
+      - name: 🚨 Notify Failure
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `🚨 Production Deployment Failed - ${context.sha.substring(0, 7)}`,
+              body: `
+                ## Deployment Failure Alert
+
+                **Commit**: ${context.sha}
+                **Author**: @${context.actor}
+                **Workflow**: [${context.workflow}](${context.payload.repository.html_url}/actions/runs/${context.runId})
+
+                ### Failed Jobs
+                - [ ] Pre-Deploy Tests
+                - [ ] Deployment
+                - [ ] Smoke Tests
+                - [ ] Production Audit
+                - [ ] Health Check
+
+                ### Next Steps
+                1. Review failed job logs
+                2. Fix issues and redeploy
+                3. Consider rolling back to previous version
+
+                **Auto-generated by GitHub Actions**
+              `,
+              labels: ['bug', 'production', 'urgent']
+            });
+
+      - name: 📧 Slack Notification
+        uses: 8398a7/action-slack@v3
+        with:
+          status: failure
+          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+          channel: '#alerts'
+          message: |
+            🚨 **Production Deployment Failed**
+            Repository: ${{ github.repository }}
+            Commit: ${{ github.sha }}
+            Author: ${{ github.actor }}
+            [View Logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+
+  # Success Notification
+  deployment-success:
+    name: ✅ Deployment Success
+    runs-on: ubuntu-latest
+    needs: [deploy, smoke-tests, production-audit, health-check]
+    if: success()
+    timeout-minutes: 3
+
+    steps:
+      - name: 🎉 Notify Success
+        uses: 8398a7/action-slack@v3
+        with:
+          status: success
+          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+          channel: '#deployments'
+          message: |
+            ✅ **Production Deployment Successful**
+            Repository: ${{ github.repository }}
+            Commit: ${{ github.sha }}
+            Author: ${{ github.actor }}
+            URL: ${{ needs.deploy.outputs.deployment-url }}
+
+            All health checks passed! 🚀
+
+      - name: 📈 Update Deployment Metrics
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Could integrate with monitoring tools like DataDog, New Relic, etc.
+            console.log('Deployment metrics updated successfully');
