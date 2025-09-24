@@ -18,9 +18,9 @@ const geistMono = Geist_Mono({
 
 // PWA Configuration
 const APP_NAME = "Allo Huissiers";
-const APP_DEFAULT_TITLE = "Allo Huissiers - خدمات المحضرين القضائيين";
+const APP_DEFAULT_TITLE = "Allo Huissiers - خدمات المفوضين القضائيين";
 const APP_TITLE_TEMPLATE = "%s - Allo Huissiers";
-const APP_DESCRIPTION = "Platform connecting users with certified judicial officers across Morocco for all legal service needs";
+const APP_DESCRIPTION = "Platform connecting users with certified huissier across Morocco for all legal service needs";
 
 export const metadata: Metadata = {
   applicationName: APP_NAME,

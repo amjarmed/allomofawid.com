@@ -1,16 +1,16 @@
 {
   "HomePage": {
     "hero": {
-      "title": "Connect with Judicial Officers in Morocco",
+      "title": "Connect with huissier in Morocco",
       "subtitle": "Fast, secure, and reliable platform for all your legal service needs",
-      "cta": "Get Started Now",
+      "cta": "Fast Search",
       "ctaSecondary": "Learn More"
     },
     "features": {
       "title": "Why Choose Allo Huissiers?",
       "search": {
         "title": "Find Officers",
-        "description": "Search and connect with qualified judicial officers in your area"
+        "description": "Search and connect with qualified huissier in your area"
       },
       "emergency": {
         "title": "Emergency Services",
@@ -30,18 +30,18 @@
       },
       "verified": {
         "title": "Verified Officers",
-        "description": "All judicial officers are verified and certified professionals"
+        "description": "All huissier are verified and certified professionals"
       }
     },
     "stats": {
-      "officers": "Judicial Officers",
+      "officers": "huissier",
       "requests": "Completed Requests",
       "cities": "Cities Covered",
       "satisfaction": "Customer Satisfaction"
     },
     "footer": {
       "company": "Allo Huissiers",
-      "description": "Connecting citizens with judicial officers across Morocco",
+      "description": "Connecting citizens with huissier across Morocco",
       "links": {
         "about": "About Us",
         "services": "Services",

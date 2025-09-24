@@ -1,7 +1,6 @@
 import { LanguageSelector } from '@/components/client/LanguageSelector';
 import { Link } from '@/i18n/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import Image from "next/image";
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -45,12 +44,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             {/* Navigation Links */}
             <nav className="hidden md:flex items-center space-x-8">
               <Link
-                href="/"
-                className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium"
-              >
-                {tNav('home')}
-              </Link>
-              <Link
                 href="/search"
                 className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium"
               >
@@ -62,6 +55,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               >
                 {tNav('emergency')}
               </Link>
+              {/* todos: add more links : about us -   */}
             </nav>
 
             {/* Right Side */}
@@ -95,125 +89,15 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               >
                 {t('hero.cta')}
               </Link>
-              <Link
-                href="/emergency"
-                className="bg-white dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 px-8 py-4 rounded-lg font-semibold text-lg transition-colors"
-              >
-                {t('hero.ctaSecondary')}
-              </Link>
+
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="bg-white dark:bg-gray-800 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">500+</div>
-              <div className="text-gray-600 dark:text-gray-400">{t('stats.officers')}</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">10K+</div>
-              <div className="text-gray-600 dark:text-gray-400">{t('stats.requests')}</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">50+</div>
-              <div className="text-gray-600 dark:text-gray-400">{t('stats.cities')}</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">98%</div>
-              <div className="text-gray-600 dark:text-gray-400">{t('stats.satisfaction')}</div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Features Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              {t('features.title')}
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-              <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mb-4">
-                <Image src="/file.svg" alt="" width={24} height={24} className="text-blue-600 dark:text-blue-400" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                {t('features.search.title')}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                {t('features.search.description')}
-              </p>
-            </div>
-
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-              <div className="w-12 h-12 bg-red-100 dark:bg-red-900 rounded-lg flex items-center justify-center mb-4">
-                <Image src="/window.svg" alt="" width={24} height={24} className="text-red-600 dark:text-red-400" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                {t('features.emergency.title')}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                {t('features.emergency.description')}
-              </p>
-            </div>
-
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-              <div className="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mb-4">
-                <Image src="/globe.svg" alt="" width={24} height={24} className="text-green-600 dark:text-green-400" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                {t('features.track.title')}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                {t('features.track.description')}
-              </p>
-            </div>
-
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-              <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mb-4">
-                <div className="w-6 h-6 bg-purple-600 dark:bg-purple-400 rounded"></div>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                {t('features.secure.title')}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                {t('features.secure.description')}
-              </p>
-            </div>
-
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-              <div className="w-12 h-12 bg-yellow-100 dark:bg-yellow-900 rounded-lg flex items-center justify-center mb-4">
-                <div className="w-6 h-6 bg-yellow-600 dark:bg-yellow-400 rounded"></div>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                {t('features.support.title')}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                {t('features.support.description')}
-              </p>
-            </div>
-
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-              <div className="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center mb-4">
-                <div className="w-6 h-6 bg-indigo-600 dark:bg-indigo-400 rounded"></div>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                {t('features.verified.title')}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                {t('features.verified.description')}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
+      {/* TODO: Add features section aligned with the prd features  */}
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

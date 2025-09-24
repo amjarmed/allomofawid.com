@@ -6,7 +6,7 @@
 
 #### Emergency Flow (Critical Priority)
 - **GPS-Based Emergency Search**
-  - *User Story*: As an emergency user, I want to instantly find the nearest judicial officers so I can get immediate legal assistance.
+  - *User Story*: As an emergency user, I want to instantly find the nearest huissier so I can get immediate legal assistance.
   - *Acceptance Criteria*:
     - User can grant location permission.
     - App displays 3 nearest verified huissiers within 5 seconds.

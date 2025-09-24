@@ -1,7 +1,7 @@
 {
-  "name": "Allo Huissiers - خدمات المحضرين القضائيين",
+  "name": "Allo Huissiers - خدمات المفوضين القضائيين",
   "short_name": "Allo Huissiers",
-  "description": "Platform connecting users with certified judicial officers across Morocco for all legal service needs",
+  "description": "Platform connecting users with certified huissier across Morocco for all legal service needs",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -92,7 +92,7 @@
     {
       "name": "Find Judicial Officer",
       "short_name": "Search",
-      "description": "Search for certified judicial officers in Morocco",
+      "description": "Search for certified huissier in Morocco",
       "url": "/ar/search",
       "icons": [
         {
