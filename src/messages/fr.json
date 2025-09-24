@@ -1,0 +1,43 @@
+{
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "success": "Opération réussie",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "search": "Rechercher",
+    "back": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "submit": "Soumettre"
+  },
+  "nav": {
+    "home": "Accueil",
+    "search": "Recherche",
+    "emergency": "Demande urgente",
+    "dashboard": "Tableau de bord",
+    "profile": "Profil",
+    "settings": "Paramètres",
+    "signOut": "Se déconnecter"
+  },
+  "auth": {
+    "signIn": "Se connecter",
+    "signUp": "Créer un compte",
+    "email": "Email",
+    "password": "Mot de passe",
+    "phone": "Numéro de téléphone",
+    "fullName": "Nom complet",
+    "forgotPassword": "Mot de passe oublié ?"
+  },
+  "requests": {
+    "title": "Titre",
+    "description": "Description",
+    "urgency": "Niveau d'urgence",
+    "status": "Statut",
+    "create": "Créer une nouvelle demande",
+    "titlePlaceholder": "Entrez le titre de la demande"
+  }
+}

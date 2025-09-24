@@ -1,0 +1,43 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Operation successful",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "search": "Search",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit"
+  },
+  "nav": {
+    "home": "Home",
+    "search": "Search",
+    "emergency": "Emergency Request",
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "settings": "Settings",
+    "signOut": "Sign Out"
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "phone": "Phone Number",
+    "fullName": "Full Name",
+    "forgotPassword": "Forgot Password?"
+  },
+  "requests": {
+    "title": "Title",
+    "description": "Description",
+    "urgency": "Urgency Level",
+    "status": "Status",
+    "create": "Create New Request",
+    "titlePlaceholder": "Enter request title"
+  }
+}
