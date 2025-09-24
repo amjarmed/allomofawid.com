@@ -1,4 +1,57 @@
 {
+  "HomePage": {
+    "hero": {
+      "title": "Connect with Judicial Officers in Morocco",
+      "subtitle": "Fast, secure, and reliable platform for all your legal service needs",
+      "cta": "Get Started Now",
+      "ctaSecondary": "Learn More"
+    },
+    "features": {
+      "title": "Why Choose Allo Huissiers?",
+      "search": {
+        "title": "Find Officers",
+        "description": "Search and connect with qualified judicial officers in your area"
+      },
+      "emergency": {
+        "title": "Emergency Services",
+        "description": "Submit urgent legal requests with priority handling"
+      },
+      "track": {
+        "title": "Track Progress",
+        "description": "Monitor your requests in real-time with status updates"
+      },
+      "secure": {
+        "title": "Secure & Trusted",
+        "description": "Your data is protected with bank-level security"
+      },
+      "support": {
+        "title": "24/7 Support",
+        "description": "Get help whenever you need it with our support team"
+      },
+      "verified": {
+        "title": "Verified Officers",
+        "description": "All judicial officers are verified and certified professionals"
+      }
+    },
+    "stats": {
+      "officers": "Judicial Officers",
+      "requests": "Completed Requests",
+      "cities": "Cities Covered",
+      "satisfaction": "Customer Satisfaction"
+    },
+    "footer": {
+      "company": "Allo Huissiers",
+      "description": "Connecting citizens with judicial officers across Morocco",
+      "links": {
+        "about": "About Us",
+        "services": "Services",
+        "contact": "Contact",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Service"
+      },
+      "copyright": "© 2025 Allo Huissiers. All rights reserved."
+    }
+  },
   "common": {
     "loading": "Loading...",
     "error": "An error occurred",
@@ -12,7 +65,8 @@
     "back": "Back",
     "next": "Next",
     "previous": "Previous",
-    "submit": "Submit"
+    "submit": "Submit",
+    "quickLinks": "Quick Links"
   },
   "nav": {
     "home": "Home",

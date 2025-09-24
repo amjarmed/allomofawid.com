@@ -1,4 +1,57 @@
 {
+  "HomePage": {
+    "hero": {
+      "title": "Connectez-vous avec les huissiers de justice au Maroc",
+      "subtitle": "Plateforme rapide, sécurisée et fiable pour tous vos besoins de services juridiques",
+      "cta": "Commencer maintenant",
+      "ctaSecondary": "En savoir plus"
+    },
+    "features": {
+      "title": "Pourquoi choisir Allo Huissiers ?",
+      "search": {
+        "title": "Trouver des huissiers",
+        "description": "Recherchez et connectez-vous avec des huissiers qualifiés dans votre région"
+      },
+      "emergency": {
+        "title": "Services d'urgence",
+        "description": "Soumettez des demandes juridiques urgentes avec traitement prioritaire"
+      },
+      "track": {
+        "title": "Suivre les progrès",
+        "description": "Surveillez vos demandes en temps réel avec des mises à jour de statut"
+      },
+      "secure": {
+        "title": "Sécurisé et fiable",
+        "description": "Vos données sont protégées avec une sécurité de niveau bancaire"
+      },
+      "support": {
+        "title": "Support 24/7",
+        "description": "Obtenez de l'aide quand vous en avez besoin avec notre équipe de support"
+      },
+      "verified": {
+        "title": "Huissiers vérifiés",
+        "description": "Tous les huissiers sont des professionnels vérifiés et certifiés"
+      }
+    },
+    "stats": {
+      "officers": "Huissiers de justice",
+      "requests": "Demandes complétées",
+      "cities": "Villes couvertes",
+      "satisfaction": "Satisfaction client"
+    },
+    "footer": {
+      "company": "Allo Huissiers",
+      "description": "Connecter les citoyens avec les huissiers de justice à travers le Maroc",
+      "links": {
+        "about": "À propos",
+        "services": "Services",
+        "contact": "Contact",
+        "privacy": "Politique de confidentialité",
+        "terms": "Conditions d'utilisation"
+      },
+      "copyright": "© 2025 Allo Huissiers. Tous droits réservés."
+    }
+  },
   "common": {
     "loading": "Chargement...",
     "error": "Une erreur s'est produite",
@@ -12,7 +65,8 @@
     "back": "Retour",
     "next": "Suivant",
     "previous": "Précédent",
-    "submit": "Soumettre"
+    "submit": "Soumettre",
+    "quickLinks": "Liens rapides"
   },
   "nav": {
     "home": "Accueil",
