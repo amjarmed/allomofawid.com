@@ -1,5 +1,5 @@
-import { routing } from '@/i18n/routing';
-import type { Metadata } from "next";
+import { routing, type Locale } from '@/i18n/routing';
+import type { Metadata, Viewport } from "next";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { Geist, Geist_Mono } from "next/font/google";
@@ -16,9 +16,49 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// PWA Configuration
+const APP_NAME = "Allo Huissiers";
+const APP_DEFAULT_TITLE = "Allo Huissiers - خدمات المحضرين القضائيين";
+const APP_TITLE_TEMPLATE = "%s - Allo Huissiers";
+const APP_DESCRIPTION = "Platform connecting users with certified judicial officers across Morocco for all legal service needs";
+
 export const metadata: Metadata = {
-  title: "Allo Huissiers - Platform for Judicial Officers in Morocco",
-  description: "Connect with certified judicial officers across Morocco for all your legal service needs",
+  applicationName: APP_NAME,
+  title: {
+    default: APP_DEFAULT_TITLE,
+    template: APP_TITLE_TEMPLATE,
+  },
+  description: APP_DESCRIPTION,
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: APP_DEFAULT_TITLE,
+  },
+  formatDetection: {
+    telephone: false,
+  },
+  openGraph: {
+    type: "website",
+    siteName: APP_NAME,
+    title: {
+      default: APP_DEFAULT_TITLE,
+      template: APP_TITLE_TEMPLATE,
+    },
+    description: APP_DESCRIPTION,
+  },
+  twitter: {
+    card: "summary",
+    title: {
+      default: APP_DEFAULT_TITLE,
+      template: APP_TITLE_TEMPLATE,
+    },
+    description: APP_DESCRIPTION,
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#1e40af",
 };
 
 interface RootLayoutProps {
@@ -36,7 +76,7 @@ export default async function RootLayout({
   setRequestLocale(locale);
 
   // Ensure that the incoming `locale` is valid
-  if (!routing.locales.includes(locale as any)) {
+  if (!routing.locales.includes(locale as Locale)) {
     notFound();
   }
 

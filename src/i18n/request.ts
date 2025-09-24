@@ -1,6 +1,6 @@
 import { getRequestConfig } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { routing } from './routing';
+import { routing, type Locale } from './routing';
 
 export default getRequestConfig(async ({ requestLocale }) => {
   // Await the requestLocale as it's a Promise in Next.js 15
@@ -14,7 +14,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
   console.log('Resolved locale to:', resolvedLocale);
 
   // Validate that the resolved locale is valid
-  if (!routing.locales.includes(resolvedLocale as any)) {
+  if (!routing.locales.includes(resolvedLocale as Locale)) {
     console.log('Invalid locale detected:', resolvedLocale, 'falling back to notFound()');
     notFound();
   }

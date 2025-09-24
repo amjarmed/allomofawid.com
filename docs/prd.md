@@ -141,7 +141,7 @@
   - Frontend & Backend: Next.js 15
   - Language: TypeScript
   - Database: Supabase
-  - PWA Support: next-pwa
+  - PWA Support: @serwist/next
 
 - **UI & Styling**:
   - Framework: TailwindCSS v4.x

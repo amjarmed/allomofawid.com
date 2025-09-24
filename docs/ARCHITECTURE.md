@@ -11,7 +11,7 @@
 - **Styling**: TailwindCSS v4.x
 - **UI Components**: shadcn/ui
 - **Icons/Animation**: lucide-react, embla-carousel-react, framer-motion, vaul
-- **PWA**: next-pwa
+- **PWA**: @serwist/next
 - **State Management**: zustand
 - **Forms**: react-hook-form
 - **Data Fetching**: @tanstack/react-query
@@ -108,7 +108,7 @@ UI/UX Standards:
 - **Backend/DB**: Supabase project (managed Postgres, Auth, Storage)
 - **Environment Variables**: Managed via Vercel and Supabase dashboard
 - **Static Assets**: Served from `public/` directory
-- **PWA**: Service Worker auto-generated, offline support enabled
+- **PWA**: Service Worker auto-generated via Serwist, offline support enabled
 - **Monitoring**: Vercel Analytics, Supabase logs, error tracking
 - **Scaling**: Supabase for DB, Vercel for frontend (auto-scaling)
 - **Backup**: Supabase automated backups

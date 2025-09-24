@@ -269,7 +269,7 @@ test('renders request form', () => {
 - **Styling**: TailwindCSS v4.x
 - **UI Components**: shadcn/ui
 - **Icons/Animation**: lucide-react, embla-carousel-react, framer-motion, vaul
-- **PWA**: next-pwa
+- **PWA**: @serwist/next
 - **State Management**: zustand
 - **Forms**: react-hook-form
 - **Data Fetching**: @tanstack/react-query
