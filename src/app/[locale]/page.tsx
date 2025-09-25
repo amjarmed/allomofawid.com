@@ -1,5 +1,4 @@
 import { EmergencyLocationSearch } from '@/components/client/EmergencyLocationSearch';
-import { QuickSearchForm } from '@/components/client/QuickSearchForm';
 import { Footer } from '@/components/server/Footer';
 import { Header } from '@/components/server/Header';
 import { Link } from '@/i18n/navigation';
@@ -133,7 +132,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl p-8 text-center">
               <div className="text-4xl font-bold mb-2">{stats.verifiedHuissiers}</div>
               <div className="text-blue-100">
-                {locale === 'ar' ? 'محضر موثق' : 'Huissiers vérifiés'}
+                {locale === 'ar' ? 'مفوض موثق' : 'Huissiers vérifiés'}
               </div>
             </div>
 
@@ -149,31 +148,17 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             <div className="bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-xl p-8 text-center">
               <div className="text-4xl font-bold mb-2">{stats.completedRequests}</div>
               <div className="text-purple-100">
-                {locale === 'ar' ? 'طلب مكتمل هذا الشهر' : 'Requêtes complétées ce mois'}
+                {/* todos: this should be visitors counter */}
+                {
+                locale === 'ar' ? 'عدد الزيارات للموقع' : 'Visites du site'
+
+                }
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Quick Search Section - API Route + Client Component Example */}
-      <section className="bg-gray-50 dark:bg-gray-900 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-              {locale === 'ar' ? 'بحث سريع عن محضر' : 'Recherche rapide de huissier'}
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300">
-              {locale === 'ar' ? 'ابحث عن محضر في منطقتك' : 'Trouvez un huissier dans votre région'}
-            </p>
-          </div>
-
-          {/* Live Search Component (Client Component Example) */}
-          <div className="max-w-2xl mx-auto">
-            <QuickSearchForm locale={locale} />
-          </div>
-        </div>
-      </section>
 
       {/* Sample Cities - Server Component Example */}
       {stats.sampleCities.length > 0 && (

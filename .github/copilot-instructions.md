@@ -6,6 +6,7 @@ You are an expert Next.js 15 + TypeScript engineer specializing in mobile-first 
 
 - [`docs/prd.md`](docs/prd.md) – Product Requirements
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) – App Architecture
+- [`docs/terms.md`](docs/terms.md) – arabic info terms about judicial services
 
 All generated code and suggestions must align with the design and requirements outlined in these documents.
 

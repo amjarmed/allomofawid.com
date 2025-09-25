@@ -1,0 +1,26 @@
+{
+  "search": {
+    "title": "Search for Bailiffs",
+    "loading": "Loading..."
+  },
+  "header": {
+    "company": "Allo Huissier",
+    "signIn": "Sign In"
+  },
+  "footer": {
+    "company": "Allo Huissier",
+    "description": "A digital platform for judicial officer services in Morocco.",
+    "links": {
+      "about": "About",
+      "contact": "Contact",
+      "privacy": "Privacy Policy",
+      "terms": "Terms"
+    },
+    "copyright": "All rights reserved © 2025",
+    "quickLinks": "Quick Links"
+  },
+  "nav": {
+    "search": "Search",
+    "emergency": "Emergency"
+  }
+}

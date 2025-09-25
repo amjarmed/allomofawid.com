@@ -1,0 +1,26 @@
+{
+  "search": {
+    "title": "Recherche d'huissiers",
+    "loading": "Chargement..."
+  },
+  "header": {
+    "company": "Allo Huissier",
+    "signIn": "Connexion"
+  },
+  "footer": {
+    "company": "Allo Huissier",
+    "description": "Plateforme numérique pour les services d'huissier au Maroc.",
+    "links": {
+      "about": "À propos",
+      "contact": "Contact",
+      "privacy": "Politique de confidentialité",
+      "terms": "Conditions"
+    },
+    "copyright": "Tous droits réservés © 2025",
+    "quickLinks": "Liens rapides"
+  },
+  "nav": {
+    "search": "Recherche",
+    "emergency": "Urgence"
+  }
+}

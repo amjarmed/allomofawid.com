@@ -36,14 +36,23 @@ export async function GET(request: NextRequest) {
       .from('huissiers')
       .select(`
         id,
-        name,
-        email,
+        full_name,
         phone,
-        specializations,
+        whatsapp,
+        email,
         office_address,
+        city_id,
+        location,
         verification_status,
+        years_experience,
+        languages,
+        specialties,
+        working_hours,
         rating,
-        total_reviews,
+        rating_count,
+        profile_image_url,
+        created_at,
+        updated_at,
         city:cities(id, name_ar, name_fr, region_ar, region_fr)
       `)
       .eq('verification_status', 'verified');
@@ -54,11 +63,11 @@ export async function GET(request: NextRequest) {
     }
 
     if (service) {
-      queryBuilder = queryBuilder.contains('specializations', [service]);
+      queryBuilder = queryBuilder.contains('specialties', [service]);
     }
 
     if (query) {
-      queryBuilder = queryBuilder.or(`name.ilike.%${query}%,office_address.ilike.%${query}%`);
+      queryBuilder = queryBuilder.or(`full_name.ilike.%${query}%,office_address.ilike.%${query}%`);
     }
 
     // Execute query
