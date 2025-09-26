@@ -1,15 +1,12 @@
 import { Link } from '@/i18n/navigation';
 import { getTranslations } from 'next-intl/server';
 
-interface FooterProps {
-  locale: string;
-}
 
-export async function Footer({ locale }: FooterProps) {
+export async function Footer() {
   // Set the locale for static rendering
-  const t = await getTranslations({ locale, namespace: 'HomePage' });
-  const tNav = await getTranslations({ locale, namespace: 'nav' });
-  const tCommon = await getTranslations({ locale, namespace: 'common' });
+  const t = await getTranslations('HomePage');
+  const tNav = await getTranslations('nav');
+  const tCommon = await getTranslations('common');
 
   return (
     <footer className="bg-gray-900 text-white py-12">

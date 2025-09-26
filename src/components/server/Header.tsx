@@ -2,15 +2,13 @@ import { LanguageSelector } from '@/components/client/LanguageSelector';
 import { Link } from '@/i18n/navigation';
 import { getTranslations } from 'next-intl/server';
 
-interface HeaderProps {
-  locale: string;
-}
 
-export async function Header({ locale }: HeaderProps) {
+
+export async function Header() {
   // Set the locale for static rendering
-  const t = await getTranslations({ locale, namespace: 'HomePage' });
-  const tNav = await getTranslations({ locale, namespace: 'nav' });
-  const tAuth = await getTranslations({ locale, namespace: 'auth' });
+  const t = await getTranslations('HomePage');
+  const tNav = await getTranslations('nav');
+  const tAuth = await getTranslations('auth');
 
   return (
     <header className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 sticky top-0 z-50">

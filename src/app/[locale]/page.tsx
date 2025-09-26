@@ -1,6 +1,4 @@
 import { EmergencyLocationSearch } from '@/components/client/EmergencyLocationSearch';
-import { Footer } from '@/components/server/Footer';
-import { Header } from '@/components/server/Header';
 import { Link } from '@/i18n/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -86,16 +84,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   // Server Component Example: Fetch real database stats
   const stats = await getStats();
 
-  // Debug: Let's check what translations we're actually getting
-  console.log('HomePage translations loaded:', {
-    locale: locale,
-    hero_title: t('hero.title')
-  });
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
-      {/* Navigation Header */}
-      <Header locale={locale} />
+
 
       {/* Hero Section */}
       <section className="relative overflow-hidden">
@@ -109,7 +100,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               {/* Emergency Location Button - Client Component with GPS access */}
-              <EmergencyLocationSearch locale={locale} />
+              <EmergencyLocationSearch />
             </div>
           </div>
         </div>
@@ -193,8 +184,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       {/* Features Section */}
       {/* TODO: Add features section aligned with the prd features  */}
 
-      {/* Footer */}
-      <Footer locale={locale} />
+
     </div>
   );
 }

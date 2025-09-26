@@ -1,4 +1,12 @@
 {
+  "language": {
+    "name": "English",
+    "locale": "en",
+    "dir": "ltr",
+    "flag": "🇺🇸",
+    "code": "en",
+    "default": false
+  },
   "HomePage": {
     "hero": {
       "title": "Connect with huissier in Morocco",
@@ -93,5 +101,71 @@
     "status": "Status",
     "create": "Create New Request",
     "titlePlaceholder": "Enter request title"
+  },
+  "searchPage": {
+  "title": "Search for Judicial Officers",
+  "button": "Search for Officer",
+  "loading": "Searching...",
+  "noResults": "No results found",
+  "results": "Results",
+  "searchError": "An error occurred while searching. Please try again.",
+  "filter": {
+    "selectCity": "Select city",
+    "service": "Service type",
+      "allServices": "All services",
+    "textSearch": "Text search (name, address...)",
+    "searchPlaceholder": "Search for judicial officers by name or address..."
+  },
+  "sort": {
+    "relevance": "Most relevant",
+    "rating": "Highest rated",
+    "distance": "Nearest"
+  }
+},
+"card": {
+  "verified": "Verified",
+  "pending": "Pending",
+  "unverified": "Unverified",
+  "rejected": "Rejected",
+  "distance": "km",
+  "workingHours": "Working Hours",
+  "specialties": "Specialties",
+  "rating": "Rating",
+  "experience": "Experience",
+  "years": "Years",
+  "languages": "Languages",
+  "contact": "Contact",
+  "call": "Call",
+  "whatsapp": "WhatsApp",
+  "email": "Email",
+  "whatsappMessage": "Hello, I need your legal services",
+  "emailSubject": "Urgent Legal Service Request",
+  "closedToday": "Closed Today",
+  "hoursVaries": "Hours Vary",
+  "closed": "Closed"
+},
+"emergencyLocation": {
+  "button": "Find Officers Near Me",
+  "loading": "Getting your location...",
+  "permissionTitle": "Location Access Permission",
+  "permissionDesc": "We need access to your location to find the nearest officers. Your location is secure and not stored.",
+  "geolocationNotSupported": "Geolocation is not supported by your browser",
+  "errorTitle": "Location Error",
+  "permissionDenied": "Location permission denied. Please enable location services in your browser settings.",
+  "noResults": "No officers found in your area",
+  "nearestHuissiers": "Nearest Officers to You",
+  "location": "Location",
+  "positionUnavailable": "Position unavailable",
+  "timeout": "Location request timed out",
+  "unknownError": "Unknown location error"
+},
+  "days": {
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday"
   }
 }

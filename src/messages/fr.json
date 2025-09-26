@@ -1,4 +1,13 @@
 {
+
+  "language": {
+    "name": "Français",
+    "locale": "fr",
+    "dir": "ltr",
+    "flag": "🇫🇷",
+    "code": "fr",
+    "default": false
+  },
   "HomePage": {
     "hero": {
       "title": "Connectez-vous avec les huissiers de justice au Maroc",
@@ -93,5 +102,72 @@
     "status": "Statut",
     "create": "Créer une nouvelle demande",
     "titlePlaceholder": "Entrez le titre de la demande"
+  },
+  "searchPage": {
+  "title": "Recherche d’huissiers",
+  "button": "Rechercher un huissier",
+  "loading": "Recherche en cours...",
+  "noResults": "Aucun résultat trouvé",
+  "results": "Résultats",
+  "searchError": "Une erreur s'est produite lors de la recherche. Veuillez réessayer.",
+  "filter": {
+    "selectCity": "Choisir la ville",
+    "service": "Type de service",
+      "allServices": "Tous les services",
+    "textSearch": "Recherche textuelle (nom, adresse...)",
+    "searchPlaceholder": "Recherchez des huissiers par nom ou adresse..."
+  },
+  "sort": {
+    "relevance": "Pertinence",
+    "rating": "Mieux noté",
+    "distance": "Le plus proche"
+  }
+},
+"card":{
+    "verified": "Vérifié",
+    "pending": "En attente",
+    "unverified": "Non vérifié",
+    "rejected": "Rejeté",
+    "distance": "km",
+    "workingHours": "Horaires",
+    "specialties": "Spécialités",
+    "rating": "Note",
+    "experience": "Expérience",
+    "years": "ans",
+    "languages": "Langues",
+    "contact": "Contact",
+    "call": "Appeler",
+    "whatsapp": "WhatsApp",
+    "email": "Email",
+    "whatsappMessage": "Bonjour, j'ai besoin de vos services juridiques",
+    "emailSubject": "Demande de service juridique urgent",
+    "closedToday": "Fermé aujourd'hui",
+    "hoursVaries": "Horaires variables",
+    "closed": "Fermé"
+},
+"emergencyLocation": {
+  "button": "Trouver un huissier proche (urgence)",
+  "loading": "Obtention de votre position...",
+  "permissionTitle": "Autorisation d'accès à la localisation",
+  "permissionDesc": "Nous avons besoin d'accéder à votre position pour trouver les huissiers les plus proches. Votre position est sécurisée et n'est pas stockée.",
+  "geolocationNotSupported": "La géolocalisation n'est pas supportée par ce navigateur",
+  "errorTitle": "Erreur de localisation",
+  "permissionDenied": "Autorisation de localisation refusée. Veuillez activer les services de localisation dans les paramètres de votre navigateur.",
+  "noResults": "Aucun huissier trouvé dans votre région",
+  "nearestHuissiers": "Huissiers les plus proches de vous",
+  "location": "Emplacement",
+  "positionUnavailable": "Position indisponible",
+  "timeout": "Délai d'attente dépassé",
+  "unknownError": "Erreur de localisation inconnue"
+
+},
+  "days": {
+    "monday": "Lundi",
+    "tuesday": "Mardi",
+    "wednesday": "Mercredi",
+    "thursday": "Jeudi",
+    "friday": "Vendredi",
+    "saturday": "Samedi",
+    "sunday": "Dimanche"
   }
 }

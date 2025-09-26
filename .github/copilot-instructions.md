@@ -143,6 +143,8 @@ export function InteractiveForm() {
 - **Default**: Arabic (ar) with RTL layout
 - **Dynamic Direction**: `<html dir={locale === 'ar' ? 'rtl' : 'ltr'}>`
 - **Tailwind RTL**: Use `rtl:` prefix for Arabic-specific styles
+- **Font Choices**: Use Noto Kufi Arabic for Arabic, Inter for Latin scripts
+- **Transition**: Smooth transitions when switching languages, The recommended way to pass all translations to a Client Component is to use useTranslations() hook from next-intl.
 
 ## 💾 Data Patterns
 

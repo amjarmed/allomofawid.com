@@ -7,28 +7,10 @@ import {
   Loader2,
   MapPin
 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { Huissier, HuissierCard } from './HuissierCard';
 
-interface Huissier {
-  id: string;
-  full_name: string;
-  phone: string | null;
-  whatsapp: string | null;
-  email: string | null;
-  office_address?: string; // Added from database
-  city_ar: string;
-  city_fr: string;
-  specialties: string[] | null;
-  working_hours: string | null;
-  distance: number; // in kilometers
-  verification_status: 'unverified' | 'pending' | 'verified' | 'rejected'; // Fixed to match DB
-  years_experience?: number | null; // Added from database
-  languages?: string[] | null; // Added from database
-  rating?: number | null; // Added from database
-  rating_count?: number | null; // Added from database
-  profile_image_url?: string | null; // Added from database
-}
 
 interface LocationState {
   loading: boolean;
@@ -37,11 +19,9 @@ interface LocationState {
   userLocation: { lat: number; lng: number } | null;
 }
 
-interface EmergencyLocationProps {
-  locale: string;
-}
 
-export function EmergencyLocationSearch({ locale }: EmergencyLocationProps) {
+
+export function EmergencyLocationSearch() {
   const [state, setState] = useState<LocationState>({
     loading: false,
     error: null,
@@ -49,7 +29,9 @@ export function EmergencyLocationSearch({ locale }: EmergencyLocationProps) {
     userLocation: null,
   });
 
-  const isArabic = locale === 'ar';
+  const t= useTranslations("language");
+  const cardT= useTranslations("card");
+  const emerT= useTranslations("emergencyLocation");
 
   const texts = {
     button: {
@@ -171,8 +153,10 @@ export function EmergencyLocationSearch({ locale }: EmergencyLocationProps) {
 
   const getCurrentLocation = (): Promise<{ lat: number; lng: number }> => {
     return new Promise((resolve, reject) => {
+      const t= useTranslations("emergencyLocation");
+
       if (!navigator.geolocation) {
-        reject(new Error(isArabic ? 'المتصفح لا يدعم تحديد الموقع' : 'La géolocalisation n\'est pas supportée par ce navigateur'));
+        reject(new Error(t('geolocationNotSupported')));
         return;
       }
 
@@ -187,16 +171,16 @@ export function EmergencyLocationSearch({ locale }: EmergencyLocationProps) {
           let errorMessage = '';
           switch (error.code) {
             case error.PERMISSION_DENIED:
-              errorMessage = isArabic ? 'تم رفض إذن الوصول للموقع' : 'L\'autorisation de localisation a été refusée';
+              errorMessage = t('permissionDenied');
               break;
             case error.POSITION_UNAVAILABLE:
-              errorMessage = isArabic ? 'الموقع غير متاح' : 'La position n\'est pas disponible';
+              errorMessage = t('positionUnavailable');
               break;
             case error.TIMEOUT:
-              errorMessage = isArabic ? 'انتهت مهلة تحديد الموقع' : 'Délai d\'attente de localisation dépassé';
+              errorMessage = t('timeout');
               break;
             default:
-              errorMessage = isArabic ? 'خطأ غير معروف في تحديد الموقع' : 'Erreur de localisation inconnue';
+              errorMessage = t('unknownError');
               break;
           }
           reject(new Error(errorMessage));
@@ -242,7 +226,7 @@ export function EmergencyLocationSearch({ locale }: EmergencyLocationProps) {
         ...prev,
         loading: false,
         huissiers: nearbyHuissiers,
-        error: nearbyHuissiers.length === 0 ? texts.noResults[locale as keyof typeof texts.noResults] : null,
+        error: nearbyHuissiers.length === 0 ? t('noResults') : null,
       }));
     } catch (error) {
       setState(prev => ({
@@ -272,18 +256,14 @@ export function EmergencyLocationSearch({ locale }: EmergencyLocationProps) {
   const handleWhatsApp = (whatsapp: string) => {
     const formattedNumber = formatPhone(whatsapp);
     const message = encodeURIComponent(
-      isArabic
-        ? 'السلام عليكم، أحتاج لخدماتكم القانونية'
-        : 'Bonjour, j\'ai besoin de vos services juridiques'
+      cardT('whatsappMessage')
     );
     window.open(`https://wa.me/${formattedNumber.replace('+', '')}?text=${message}`, '_blank');
   };
 
   const handleEmail = (email: string) => {
     const subject = encodeURIComponent(
-      isArabic
-        ? 'طلب خدمة قانونية عاجلة'
-        : 'Demande de service juridique urgent'
+      cardT('emailSubject')
     );
     window.open(`mailto:${email}?subject=${subject}`, '_self');
   };
@@ -297,14 +277,14 @@ export function EmergencyLocationSearch({ locale }: EmergencyLocationProps) {
       const todaySchedule = hours[today];
 
       if (todaySchedule?.closed) {
-        return isArabic ? 'مغلق اليوم' : 'Fermé aujourd\'hui';
+        return cardT('closedToday');
       }
 
       if (todaySchedule?.open && todaySchedule?.close) {
         return `${todaySchedule.open} - ${todaySchedule.close}`;
       }
 
-      return isArabic ? 'ساعات متغيرة' : 'Horaires variables';
+      return cardT('hoursVaries');
     } catch {
       return workingHoursStr;
     }
@@ -324,12 +304,12 @@ export function EmergencyLocationSearch({ locale }: EmergencyLocationProps) {
           {state.loading ? (
             <>
               <Loader2 className="w-5 h-5 animate-spin ml-2" />
-              {texts.loading[locale as keyof typeof texts.loading]}
+              {emerT("loading")}
             </>
           ) : (
             <>
               <MapPin className="w-5 h-5 ml-2" />
-              {texts.button[locale as keyof typeof texts.button]}
+              {emerT("button")}
             </>
           )}
         </Button>
@@ -339,9 +319,9 @@ export function EmergencyLocationSearch({ locale }: EmergencyLocationProps) {
           <Alert className="mt-4 max-w-2xl mx-auto">
             <AlertCircle className="h-4 w-4" />
             <div>
-              <h4 className="font-medium">{texts.permissionTitle[locale as keyof typeof texts.permissionTitle]}</h4>
+              <h4 className="font-medium">{emerT("permissionTitle")}</h4>
               <AlertDescription className="mt-1">
-                {texts.permissionDesc[locale as keyof typeof texts.permissionDesc]}
+                {emerT("permissionDesc")}
               </AlertDescription>
             </div>
           </Alert>
@@ -353,7 +333,7 @@ export function EmergencyLocationSearch({ locale }: EmergencyLocationProps) {
         <Alert variant="destructive" className="max-w-2xl mx-auto">
           <AlertCircle className="h-4 w-4" />
           <div>
-            <h4 className="font-medium">{texts.errorTitle[locale as keyof typeof texts.errorTitle]}</h4>
+            <h4 className="font-medium">{emerT("errorTitle")}</h4>
             <AlertDescription>{state.error}</AlertDescription>
           </div>
         </Alert>
@@ -363,15 +343,13 @@ export function EmergencyLocationSearch({ locale }: EmergencyLocationProps) {
       {state.huissiers.length > 0 && (
         <div className="space-y-6">
           <h3 className="text-2xl font-bold text-center text-gray-900 dark:text-white">
-            {texts.nearestHuissiers[locale as keyof typeof texts.nearestHuissiers]}
+            {emerT("nearestHuissiers")}
           </h3>
           <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
             {state.huissiers.map((huissier) => (
               <HuissierCard
                 key={huissier.id}
                 huissier={huissier}
-                locale={locale}
-                texts={texts}
                 onCall={handleCall}
                 onWhatsApp={handleWhatsApp}
                 onEmail={handleEmail}

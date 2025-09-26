@@ -4,9 +4,12 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Separator } from '@/components/ui/separator';
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { AlertCircle, Award, Calendar, Clock, Globe, Mail, MapPin, MessageCircle, Navigation, Phone, Shield, Star, User } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useCallback } from 'react';
 
 export interface Huissier {
@@ -18,6 +21,7 @@ export interface Huissier {
   office_address?: string;
   city_ar: string;
   city_fr: string;
+  city_en?: string;
   specialties: string[] | null;
   working_hours: string | null;
   distance: number;
@@ -31,16 +35,17 @@ export interface Huissier {
 
 export interface HuissierCardProps {
   huissier: Huissier;
-  locale: string;
-  texts: any;
-  onCall: (phone: string) => void;
-  onWhatsApp: (whatsapp: string) => void;
-  onEmail: (email: string) => void;
-  parseWorkingHours: (workingHoursStr: string | null) => string | null;
+  onCall?: (phone: string) => void;
+  onWhatsApp?: (whatsapp: string) => void;
+  onEmail?: (email: string) => void;
+  parseWorkingHours?: (workingHoursStr: string | null) => string | null;
 }
 
-export function HuissierCard({ huissier, locale, texts, onCall, onWhatsApp, onEmail, parseWorkingHours }: HuissierCardProps) {
-  const isArabic = locale === 'ar';
+
+export function HuissierCard({ huissier, onCall, onWhatsApp, onEmail, parseWorkingHours }: HuissierCardProps) {
+  // Translation hooks
+const t= useTranslations("card");
+const locale = useTranslations("language");
 
   const getInitials = useCallback((name: string) => {
     return name
@@ -48,7 +53,7 @@ export function HuissierCard({ huissier, locale, texts, onCall, onWhatsApp, onEm
       .map(word => word.charAt(0))
       .join('')
       .substring(0, 2)
-      .toUpperCase();
+      .toUpperCase() || '--';
   }, []);
 
   const getVerificationBadge = useCallback((status: string) => {
@@ -57,34 +62,36 @@ export function HuissierCard({ huissier, locale, texts, onCall, onWhatsApp, onEm
         return (
           <Badge variant="secondary" className="bg-green-100 text-green-800 border-green-200">
             <Shield className="w-3 h-3 mr-1" />
-            {texts.verified[locale]}
+            {t("verified")}
           </Badge>
         );
       case 'pending':
         return (
           <Badge variant="secondary" className="bg-yellow-100 text-yellow-800 border-yellow-200">
             <Clock className="w-3 h-3 mr-1" />
-            {texts.pending[locale]}
+            {t("pending")}
           </Badge>
         );
       case 'unverified':
         return (
           <Badge variant="secondary" className="bg-gray-100 text-gray-600 border-gray-200">
             <User className="w-3 h-3 mr-1" />
-            {texts.unverified[locale]}
+            {t("unverified")}
           </Badge>
         );
       case 'rejected':
         return (
           <Badge variant="secondary" className="bg-red-100 text-red-800 border-red-200">
             <AlertCircle className="w-3 h-3 mr-1" />
-            {texts.rejected[locale]}
+            {t("rejected")}
           </Badge>
         );
       default:
         return null;
     }
-  }, [locale, texts]);
+  }, [t]);
+
+
 
   return (
     <TooltipProvider>
@@ -108,13 +115,13 @@ export function HuissierCard({ huissier, locale, texts, onCall, onWhatsApp, onEm
               <div className="flex items-center space-x-2 rtl:space-x-reverse text-muted-foreground">
                 <Navigation className="w-4 h-4 text-blue-500" />
                 <span className="text-sm font-medium">
-                  {isArabic ? huissier.city_ar : huissier.city_fr}
+                  {locale("code") === 'ar' ? huissier.city_ar : locale("code") === 'fr' ? huissier.city_fr : huissier.city_en }
                 </span>
                 <Separator orientation="vertical" className="h-4" />
                 <div className="flex items-center space-x-1 rtl:space-x-reverse">
                   <MapPin className="w-3 h-3" />
                   <span className="text-xs">
-                    {typeof huissier.distance === 'number' ? huissier.distance.toFixed(1) : '--'} {texts.distance[locale]}
+                    {typeof huissier.distance === 'number' ? huissier.distance.toFixed(1) : '--'} {t("distance")}
                   </span>
                 </div>
               </div>
@@ -126,10 +133,59 @@ export function HuissierCard({ huissier, locale, texts, onCall, onWhatsApp, onEm
             <div className="flex items-center space-x-2 rtl:space-x-reverse">
               <Clock className="w-4 h-4 text-green-600" />
               <div className="flex-1">
-                <span className="text-xs font-medium text-muted-foreground">
-                  {texts.workingHours[locale]}
-                </span>
-                <p className="text-sm">{parseWorkingHours(huissier.working_hours)}</p>
+ <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="outline" className='mx-2 border border-green-600'>{t("workingHours")}</Button>
+      </PopoverTrigger>
+      <PopoverContent className="max-w-full">
+
+                  <Table className="w-max ">
+  <TableCaption> <span className="text-xs font-medium text-muted-foreground">
+                  {t("workingHours")}
+                </span></TableCaption>
+  <TableHeader>
+    <TableRow>
+      {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map((day, index) => (
+        <TableHead key={index}>{day}</TableHead>
+      ))}
+
+
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      {
+      ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map(day=> {
+        const huissierWorkingHours = huissier.working_hours ? JSON.parse(huissier.working_hours) : null;
+        const info = huissierWorkingHours?.[day.toLowerCase()];
+
+
+      // Check if the info object is valid
+        if (!info) {
+          return <TableCell key={day}>--</TableCell>;
+        }
+
+        // Check if the huissier is closed on that day
+        if (info.closed) {
+          return <TableCell key={day}>{t("closed")}</TableCell>;
+        }
+        // Check if the hours vary
+        return <TableCell key={day}>{
+          info.open && info.close ? `${info.open} - ${info.close}` : '--'
+         } </TableCell>;
+      })
+
+
+}
+
+
+
+
+    </TableRow>
+  </TableBody>
+</Table>
+</PopoverContent>
+    </Popover>
               </div>
             </div>
           )}
@@ -138,7 +194,7 @@ export function HuissierCard({ huissier, locale, texts, onCall, onWhatsApp, onEm
               <div className="flex items-center space-x-2 rtl:space-x-reverse">
                 <Award className="w-4 h-4 text-purple-600" />
                 <span className="text-xs font-medium text-muted-foreground">
-                  {texts.specialties[locale]}
+                  {t("specialties")}
                 </span>
               </div>
               <div className="flex flex-wrap gap-1">
@@ -170,7 +226,7 @@ export function HuissierCard({ huissier, locale, texts, onCall, onWhatsApp, onEm
                 <Star className="w-4 h-4 text-yellow-500 fill-current" />
                 <div className="flex-1">
                   <span className="text-xs font-medium text-muted-foreground">
-                    {texts.rating[locale]}
+                    {t("rating")}
                   </span>
                   <div className="flex items-center space-x-1 rtl:space-x-reverse">
                     <span className="text-sm font-semibold">{huissier.rating.toFixed(1)}</span>
@@ -186,10 +242,10 @@ export function HuissierCard({ huissier, locale, texts, onCall, onWhatsApp, onEm
                 <Calendar className="w-4 h-4 text-blue-600" />
                 <div className="flex-1">
                   <span className="text-xs font-medium text-muted-foreground">
-                    {texts.experience[locale]}
+                    {t("experience")}
                   </span>
                   <p className="text-sm">
-                    {huissier.years_experience} {texts.years[locale]}
+                    {huissier.years_experience} {t("years")}
                   </p>
                 </div>
               </div>
@@ -200,13 +256,13 @@ export function HuissierCard({ huissier, locale, texts, onCall, onWhatsApp, onEm
               <div className="flex items-center space-x-2 rtl:space-x-reverse">
                 <Globe className="w-4 h-4 text-green-600" />
                 <span className="text-xs font-medium text-muted-foreground">
-                  {texts.languages[locale]}
+                  {t("languages")}
                 </span>
               </div>
               <div className="flex flex-wrap gap-1">
                 {huissier.languages.map((language, index) => (
                   <Badge key={index} variant="outline" className="text-xs bg-green-50 text-green-700 border-green-200">
-                    {language.toUpperCase()}
+                    {language.toUpperCase() || '--'}
                   </Badge>
                 ))}
               </div>
@@ -217,11 +273,11 @@ export function HuissierCard({ huissier, locale, texts, onCall, onWhatsApp, onEm
             <div className="flex items-center space-x-2 rtl:space-x-reverse">
               <MessageCircle className="w-4 h-4 text-blue-600" />
               <span className="text-xs font-medium text-muted-foreground">
-                {texts.contact[locale]}
+                {t("contact")}
               </span>
             </div>
             <div className="grid grid-cols-3 gap-2">
-              {huissier.phone && (
+              {huissier.phone && onCall && (
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button
@@ -231,7 +287,7 @@ export function HuissierCard({ huissier, locale, texts, onCall, onWhatsApp, onEm
                       className="flex-1 bg-blue-50 hover:bg-blue-100 text-blue-700 border-blue-200"
                     >
                       <Phone className="w-4 h-4 mr-1" />
-                      {texts.call[locale]}
+                      {t("call")}
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>
@@ -239,7 +295,7 @@ export function HuissierCard({ huissier, locale, texts, onCall, onWhatsApp, onEm
                   </TooltipContent>
                 </Tooltip>
               )}
-              {huissier.whatsapp && (
+              {huissier.whatsapp && onWhatsApp && (
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button
@@ -249,7 +305,7 @@ export function HuissierCard({ huissier, locale, texts, onCall, onWhatsApp, onEm
                       className="flex-1 bg-green-50 hover:bg-green-100 text-green-700 border-green-200"
                     >
                       <MessageCircle className="w-4 h-4 mr-1" />
-                      {texts.whatsapp[locale]}
+                      {t("whatsapp")}
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>
@@ -257,7 +313,7 @@ export function HuissierCard({ huissier, locale, texts, onCall, onWhatsApp, onEm
                   </TooltipContent>
                 </Tooltip>
               )}
-              {huissier.email && (
+              {huissier.email && onEmail && (
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button
@@ -267,7 +323,7 @@ export function HuissierCard({ huissier, locale, texts, onCall, onWhatsApp, onEm
                       className="flex-1 bg-gray-50 hover:bg-gray-100 text-gray-700 border-gray-200"
                     >
                       <Mail className="w-4 h-4 mr-1" />
-                      {texts.email[locale]}
+                      {t("email")}
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>

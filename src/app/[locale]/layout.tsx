@@ -1,3 +1,5 @@
+import { Footer } from '@/components/server/Footer';
+import { Header } from '@/components/server/Header';
 import { routing, type Locale } from '@/i18n/routing';
 import type { Metadata, Viewport } from "next";
 import { NextIntlClientProvider } from 'next-intl';
@@ -95,7 +97,9 @@ export default async function RootLayout({
         }`}
       >
         <NextIntlClientProvider messages={messages}>
+          <Header />
           {children}
+          <Footer />
         </NextIntlClientProvider>
       </body>
     </html>
